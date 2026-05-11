@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class CoopCocinaOnline : ModuleRules
+public class RedesUECooking : ModuleRules
 {
-	public CoopCocinaOnline(ReadOnlyTargetRules Target) : base(Target)
+	public RedesUECooking(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -18,26 +18,27 @@ public class CoopCocinaOnline : ModuleRules
 			"StateTreeModule",
 			"GameplayStateTreeModule",
 			"UMG",
-			"Slate"
+			"Slate",
+			"PhotonFusion"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
 
 		PublicIncludePaths.AddRange(new string[] {
-			"CoopCocinaOnline",
-			"CoopCocinaOnline/Variant_Platforming",
-			"CoopCocinaOnline/Variant_Platforming/Animation",
-			"CoopCocinaOnline/Variant_Combat",
-			"CoopCocinaOnline/Variant_Combat/AI",
-			"CoopCocinaOnline/Variant_Combat/Animation",
-			"CoopCocinaOnline/Variant_Combat/Gameplay",
-			"CoopCocinaOnline/Variant_Combat/Interfaces",
-			"CoopCocinaOnline/Variant_Combat/UI",
-			"CoopCocinaOnline/Variant_SideScrolling",
-			"CoopCocinaOnline/Variant_SideScrolling/AI",
-			"CoopCocinaOnline/Variant_SideScrolling/Gameplay",
-			"CoopCocinaOnline/Variant_SideScrolling/Interfaces",
-			"CoopCocinaOnline/Variant_SideScrolling/UI"
+			"RedesUECooking",
+			"RedesUECooking/Variant_Platforming",
+			"RedesUECooking/Variant_Platforming/Animation",
+			"RedesUECooking/Variant_Combat",
+			"RedesUECooking/Variant_Combat/AI",
+			"RedesUECooking/Variant_Combat/Animation",
+			"RedesUECooking/Variant_Combat/Gameplay",
+			"RedesUECooking/Variant_Combat/Interfaces",
+			"RedesUECooking/Variant_Combat/UI",
+			"RedesUECooking/Variant_SideScrolling",
+			"RedesUECooking/Variant_SideScrolling/AI",
+			"RedesUECooking/Variant_SideScrolling/Gameplay",
+			"RedesUECooking/Variant_SideScrolling/Interfaces",
+			"RedesUECooking/Variant_SideScrolling/UI"
 		});
 
 		// Uncomment if you are using Slate UI

@@ -1,15 +1,15 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 
-#include "CoopCocinaOnlinePlayerController.h"
+#include "RedesUECookingPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "InputMappingContext.h"
 #include "Blueprint/UserWidget.h"
-#include "CoopCocinaOnline.h"
+#include "RedesUECooking.h"
 #include "Widgets/Input/SVirtualJoystick.h"
 
-void ACoopCocinaOnlinePlayerController::BeginPlay()
+void ARedesUECookingPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -26,14 +26,14 @@ void ACoopCocinaOnlinePlayerController::BeginPlay()
 
 		} else {
 
-			UE_LOG(LogCoopCocinaOnline, Error, TEXT("Could not spawn mobile controls widget."));
+			UE_LOG(LogRedesUECooking, Error, TEXT("Could not spawn mobile controls widget."));
 
 		}
 
 	}
 }
 
-void ACoopCocinaOnlinePlayerController::SetupInputComponent()
+void ARedesUECookingPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 

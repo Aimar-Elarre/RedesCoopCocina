@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class CoopCocinaOnlineTarget : TargetRules
+public class RedesUECookingEditorTarget : TargetRules
 {
-	public CoopCocinaOnlineTarget(TargetInfo Target) : base(Target)
+	public RedesUECookingEditorTarget(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Game;
+		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_6;
-		ExtraModuleNames.Add("CoopCocinaOnline");
+		ExtraModuleNames.Add("RedesUECooking");
 	}
 }

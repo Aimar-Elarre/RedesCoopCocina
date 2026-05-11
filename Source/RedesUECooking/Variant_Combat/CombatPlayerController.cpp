@@ -10,7 +10,7 @@
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "Blueprint/UserWidget.h"
-#include "CoopCocinaOnline.h"
+#include "RedesUECooking.h"
 #include "Widgets/Input/SVirtualJoystick.h"
 
 void ACombatPlayerController::BeginPlay()
@@ -30,7 +30,7 @@ void ACombatPlayerController::BeginPlay()
 
 		} else {
 
-			UE_LOG(LogCoopCocinaOnline, Error, TEXT("Could not spawn mobile controls widget."));
+			UE_LOG(LogRedesUECooking, Error, TEXT("Could not spawn mobile controls widget."));
 
 		}
 

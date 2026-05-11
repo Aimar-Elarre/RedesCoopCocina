@@ -1,19 +1,19 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 
-#include "Variant_Platforming/PlatformingPlayerController.h"
+#include "SideScrollingPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputMappingContext.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/PlayerStart.h"
-#include "PlatformingCharacter.h"
+#include "SideScrollingCharacter.h"
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "Blueprint/UserWidget.h"
-#include "CoopCocinaOnline.h"
+#include "RedesUECooking.h"
 #include "Widgets/Input/SVirtualJoystick.h"
 
-void APlatformingPlayerController::BeginPlay()
+void ASideScrollingPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -30,14 +30,14 @@ void APlatformingPlayerController::BeginPlay()
 
 		} else {
 
-			UE_LOG(LogCoopCocinaOnline, Error, TEXT("Could not spawn mobile controls widget."));
+			UE_LOG(LogRedesUECooking, Error, TEXT("Could not spawn mobile controls widget."));
 
 		}
 
 	}
 }
 
-void APlatformingPlayerController::SetupInputComponent()
+void ASideScrollingPlayerController::SetupInputComponent()
 {
 	// only add IMCs for local player controllers
 	if (IsLocalPlayerController())
@@ -62,15 +62,15 @@ void APlatformingPlayerController::SetupInputComponent()
 	}
 }
 
-void APlatformingPlayerController::OnPossess(APawn* InPawn)
+void ASideScrollingPlayerController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
 
 	// subscribe to the pawn's OnDestroyed delegate
-	InPawn->OnDestroyed.AddDynamic(this, &APlatformingPlayerController::OnPawnDestroyed);
+	InPawn->OnDestroyed.AddDynamic(this, &ASideScrollingPlayerController::OnPawnDestroyed);
 }
 
-void APlatformingPlayerController::OnPawnDestroyed(AActor* DestroyedActor)
+void ASideScrollingPlayerController::OnPawnDestroyed(AActor* DestroyedActor)
 {
 	// find the player start
 	TArray<AActor*> ActorList;
@@ -81,7 +81,7 @@ void APlatformingPlayerController::OnPawnDestroyed(AActor* DestroyedActor)
 		// spawn a character at the player start
 		const FTransform SpawnTransform = ActorList[0]->GetActorTransform();
 
-		if (APlatformingCharacter* RespawnedCharacter = GetWorld()->SpawnActor<APlatformingCharacter>(CharacterClass, SpawnTransform))
+		if (ASideScrollingCharacter* RespawnedCharacter = GetWorld()->SpawnActor<ASideScrollingCharacter>(CharacterClass, SpawnTransform))
 		{
 			// possess the character
 			Possess(RespawnedCharacter);

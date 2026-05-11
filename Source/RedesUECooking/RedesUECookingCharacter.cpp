@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "CoopCocinaOnlineCharacter.h"
+#include "RedesUECookingCharacter.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -10,9 +10,9 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include "CoopCocinaOnline.h"
+#include "RedesUECooking.h"
 
-ACoopCocinaOnlineCharacter::ACoopCocinaOnlineCharacter()
+ARedesUECookingCharacter::ARedesUECookingCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -46,11 +46,14 @@ ACoopCocinaOnlineCharacter::ACoopCocinaOnlineCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 
+	bReplicates = true;
+	SetReplicateMovement(true);
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
-void ACoopCocinaOnlineCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void ARedesUECookingCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
@@ -60,19 +63,19 @@ void ACoopCocinaOnlineCharacter::SetupPlayerInputComponent(UInputComponent* Play
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ACoopCocinaOnlineCharacter::Move);
-		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &ACoopCocinaOnlineCharacter::Look);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ARedesUECookingCharacter::Move);
+		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &ARedesUECookingCharacter::Look);
 
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ACoopCocinaOnlineCharacter::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARedesUECookingCharacter::Look);
 	}
 	else
 	{
-		UE_LOG(LogCoopCocinaOnline, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
+		UE_LOG(LogRedesUECooking, Error, TEXT("'%s' Failed to find an Enhanced Input component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
 }
 
-void ACoopCocinaOnlineCharacter::Move(const FInputActionValue& Value)
+void ARedesUECookingCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
@@ -81,7 +84,7 @@ void ACoopCocinaOnlineCharacter::Move(const FInputActionValue& Value)
 	DoMove(MovementVector.X, MovementVector.Y);
 }
 
-void ACoopCocinaOnlineCharacter::Look(const FInputActionValue& Value)
+void ARedesUECookingCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -90,7 +93,7 @@ void ACoopCocinaOnlineCharacter::Look(const FInputActionValue& Value)
 	DoLook(LookAxisVector.X, LookAxisVector.Y);
 }
 
-void ACoopCocinaOnlineCharacter::DoMove(float Right, float Forward)
+void ARedesUECookingCharacter::DoMove(float Right, float Forward)
 {
 	if (GetController() != nullptr)
 	{
@@ -110,7 +113,7 @@ void ACoopCocinaOnlineCharacter::DoMove(float Right, float Forward)
 	}
 }
 
-void ACoopCocinaOnlineCharacter::DoLook(float Yaw, float Pitch)
+void ARedesUECookingCharacter::DoLook(float Yaw, float Pitch)
 {
 	if (GetController() != nullptr)
 	{
@@ -120,13 +123,13 @@ void ACoopCocinaOnlineCharacter::DoLook(float Yaw, float Pitch)
 	}
 }
 
-void ACoopCocinaOnlineCharacter::DoJumpStart()
+void ARedesUECookingCharacter::DoJumpStart()
 {
 	// signal the character to jump
 	Jump();
 }
 
-void ACoopCocinaOnlineCharacter::DoJumpEnd()
+void ARedesUECookingCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();

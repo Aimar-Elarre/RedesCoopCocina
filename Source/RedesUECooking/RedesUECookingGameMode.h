@@ -4,20 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "CoopCocinaOnlineGameMode.generated.h"
+#include "RedesUECookingGameMode.generated.h"
 
 /**
  *  Simple GameMode for a third person game
  */
 UCLASS(abstract)
-class ACoopCocinaOnlineGameMode : public AGameModeBase
+class ARedesUECookingGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
 	
 	/** Constructor */
-	ACoopCocinaOnlineGameMode();
+	ARedesUECookingGameMode();
 };
 
 

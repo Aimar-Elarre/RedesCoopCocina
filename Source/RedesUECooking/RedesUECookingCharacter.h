@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
-#include "CoopCocinaOnlineCharacter.generated.h"
+#include "RedesUECookingCharacter.generated.h"
 
 class USpringArmComponent;
 class UCameraComponent;
@@ -19,7 +19,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
  *  Implements a controllable orbiting camera
  */
 UCLASS(abstract)
-class ACoopCocinaOnlineCharacter : public ACharacter
+class ARedesUECookingCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -52,7 +52,7 @@ protected:
 public:
 
 	/** Constructor */
-	ACoopCocinaOnlineCharacter();	
+	ARedesUECookingCharacter();	
 
 protected:
 
@@ -92,5 +92,11 @@ public:
 
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+//public:
+//
+//	UPROPERTY(ReplicatedUsing = PJR_OnRep_CurrentScore, VisibleInstanceOnly, BlueprintReadOnly, Category = "Match")
+//	int32 CurrentScore = 0;
+
 };
 
